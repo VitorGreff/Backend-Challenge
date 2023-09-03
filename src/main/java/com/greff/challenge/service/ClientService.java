@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.TimeZone;
+import java.util.stream.Collectors;
 
 @Service
 public class ClientService {
@@ -60,4 +61,7 @@ public class ClientService {
         return client;
     }
 
+    public List<Client> getTenGreater(){
+        return repo.findAll().stream().sorted((a, b)-> a.compareTo(b)).collect(Collectors.toList());
+    }
 }

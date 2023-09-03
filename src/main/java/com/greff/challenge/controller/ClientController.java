@@ -45,5 +45,10 @@ public class ClientController {
         return ResponseEntity.noContent().build();
     }
 
+    @RequestMapping(value = "/ten-greater", method = RequestMethod.GET)
+    public ResponseEntity<List<Client>> getTenGreater(){
+        List<Client> clients = service.getTenGreater();
+        return ResponseEntity.ok().body(clients);
+    }
 
 }

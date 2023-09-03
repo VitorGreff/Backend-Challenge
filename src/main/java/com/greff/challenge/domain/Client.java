@@ -1,6 +1,7 @@
 package com.greff.challenge.domain;
 
 import com.greff.challenge.domain.enums.Gender;
+import com.greff.challenge.domain.enums.Severity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Document("client")
-public class Client implements Serializable {
+public class Client implements Serializable, Comparable<Client>{
 
     @Id
     private String id;
@@ -102,5 +103,26 @@ public class Client implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public int compareTo(Client other){
+        return Double.compare(this.calculateScore(), other.calculateScore());
+    }
+    
+    public Double calculateScore(){
+        Integer sd = 0;
+        Double score;
+
+        for (Disease x: diseases
+             ) {
+            if(x.getSeverity() == Severity.TYPE1)
+                sd += 1;
+
+            else
+                sd+=2;
+        }
+        score = (1/(1+Math.exp(-2.8 + sd))) * 100;
+        return score;
     }
 }
