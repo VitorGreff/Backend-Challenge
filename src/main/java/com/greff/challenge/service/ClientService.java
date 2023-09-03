@@ -7,9 +7,12 @@ import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.TimeZone;
 
 @Service
 public class ClientService {
@@ -29,7 +32,15 @@ public class ClientService {
     }
 
     public Client fromDTO(ClientDTO obj){
-        Client client = new Client(null, obj.getName(), obj.getBirthDate(), obj.getGender(), new Date());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+
+        Client client = null;
+        try {
+            client = new Client(null, obj.getName(), sdf.parse(obj.getBirthDate()), obj.getGender(), new Date());
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         return client;
     }
 }
