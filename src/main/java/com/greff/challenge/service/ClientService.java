@@ -2,6 +2,7 @@ package com.greff.challenge.service;
 
 import com.greff.challenge.domain.Client;
 import com.greff.challenge.dto.ClientDTO;
+import com.greff.challenge.exceptions.ObjectNotFoundException;
 import com.greff.challenge.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class ClientService {
 
     public Client findById(String id){
         Optional<Client> client = repo.findById(id);
-        return client.orElseThrow();
+        return client.orElseThrow(()->new ObjectNotFoundException("Object not found."));
     }
 
     public Client update(String id, ClientDTO obj){
