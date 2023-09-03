@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 @RestController
 @RequestMapping(value = "/clients")
@@ -27,6 +31,13 @@ public class ClientController {
         Client client = service.findById(id);
         return ResponseEntity.ok().body(client);
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Client> updateClient(@PathVariable String id, @RequestBody ClientDTO obj){
+        Client newClient = service.update(obj);
+        return ResponseEntity.ok().body(newClient);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> insertClient(@RequestBody ClientDTO obj){
         Client client = service.fromDTO(obj);
@@ -34,5 +45,6 @@ public class ClientController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(client.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
+
 
 }

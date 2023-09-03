@@ -1,6 +1,7 @@
 package com.greff.challenge.service;
 
 import com.greff.challenge.domain.Client;
+import com.greff.challenge.domain.enums.Gender;
 import com.greff.challenge.dto.ClientDTO;
 import com.greff.challenge.repository.ClientRepository;
 import org.apache.catalina.User;
@@ -31,6 +32,17 @@ public class ClientService {
         return client.orElseThrow();
     }
 
+    public Client update(ClientDTO obj){
+        Client newClient = findById(fromDTO(obj).getId());
+        newClient.setId(obj.getId());
+        newClient.setBirthDate(fromDTO(obj).getBirthDate());
+        newClient.setName(obj.getName());
+        newClient.setGender(Gender.valueOf(obj.getGender()));
+        newClient.setCreationDate(findById(fromDTO(obj).getId()).getCreationDate());
+        newClient.setUpdateDate(new Date());
+        return repo.save(newClient);
+    }
+
     public Client fromDTO(ClientDTO obj){
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
@@ -43,4 +55,5 @@ public class ClientService {
         }
         return client;
     }
+
 }

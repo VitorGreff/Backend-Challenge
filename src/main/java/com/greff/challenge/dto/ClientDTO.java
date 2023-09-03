@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class ClientDTO implements Serializable {
+    private String id;
     private String name;
     private String birthDate;
     private String gender;
@@ -28,6 +29,14 @@ public class ClientDTO implements Serializable {
 
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
