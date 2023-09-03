@@ -62,6 +62,9 @@ public class ClientService {
     }
 
     public List<Client> getTenGreater(){
-        return repo.findAll().stream().sorted((a, b)-> a.compareTo(b)).collect(Collectors.toList());
+        return repo.findAll().stream()
+                .sorted((a, b)-> a.compareTo(b)).
+                collect(Collectors.toList()).
+                subList(0, 10);
     }
 }
