@@ -32,13 +32,14 @@ public class ClientService {
         return client.orElseThrow();
     }
 
-    public Client update(ClientDTO obj){
-        Client newClient = findById(fromDTO(obj).getId());
-        newClient.setId(obj.getId());
-        newClient.setBirthDate(fromDTO(obj).getBirthDate());
-        newClient.setName(obj.getName());
-        newClient.setGender(Gender.valueOf(obj.getGender()));
-        newClient.setCreationDate(findById(fromDTO(obj).getId()).getCreationDate());
+    public Client update(String id, ClientDTO obj){
+        Client aux = fromDTO(obj);
+        Client newClient = findById(id);
+        newClient.setId(id);
+        newClient.setName(aux.getName());
+        newClient.setGender(aux.getGender());
+        newClient.setBirthDate(aux.getBirthDate());
+        newClient.setCreationDate(findById(id).getCreationDate());
         newClient.setUpdateDate(new Date());
         return repo.save(newClient);
     }
