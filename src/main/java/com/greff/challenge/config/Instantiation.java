@@ -1,7 +1,6 @@
 package com.greff.challenge.config;
 
 import com.greff.challenge.domain.Client;
-import com.greff.challenge.domain.enums.Gender;
 import com.greff.challenge.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

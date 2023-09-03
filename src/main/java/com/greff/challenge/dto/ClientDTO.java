@@ -1,12 +1,6 @@
 package com.greff.challenge.dto;
 
-import com.greff.challenge.domain.enums.Gender;
-
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
 
 public class ClientDTO implements Serializable {
     private String name;

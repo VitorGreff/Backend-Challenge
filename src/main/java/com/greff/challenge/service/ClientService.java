@@ -1,10 +1,8 @@
 package com.greff.challenge.service;
 
 import com.greff.challenge.domain.Client;
-import com.greff.challenge.domain.enums.Gender;
 import com.greff.challenge.dto.ClientDTO;
 import com.greff.challenge.repository.ClientRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
