@@ -2,12 +2,14 @@ package com.greff.challenge.domain;
 
 import com.greff.challenge.domain.enums.Gender;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
-import java.lang.annotation.Documented;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 @Document("client")
 public class Client implements Serializable {
@@ -19,6 +21,7 @@ public class Client implements Serializable {
     private Gender gender;
     private Date creationDate;
     private Date updateDate;
+    @DBRef(lazy = true)
     private List<Disease> diseases = new ArrayList<>();
 
     public Client(){}

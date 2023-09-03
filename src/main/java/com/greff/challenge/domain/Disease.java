@@ -1,5 +1,6 @@
 package com.greff.challenge.domain;
 
+import com.greff.challenge.domain.enums.Severity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,12 +13,12 @@ public class Disease implements Serializable {
     @Id
     private String id;
     private String name;
-    private Integer severity;
+    private Severity severity;
 
     public Disease() {
     }
 
-    public Disease(String id, String name, Integer severity) {
+    public Disease(String id, String name, Severity severity) {
         this.id = id;
         this.name = name;
         this.severity = severity;
@@ -39,11 +40,11 @@ public class Disease implements Serializable {
         this.name = name;
     }
 
-    public Integer getSeverity() {
+    public Severity getSeverity() {
         return severity;
     }
 
-    public void setSeverity(Integer severity) {
+    public void setSeverity(Severity severity) {
         this.severity = severity;
     }
 
