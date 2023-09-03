@@ -34,10 +34,16 @@ public class ClientController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(client.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Client> updateClient(@PathVariable String id, @RequestBody ClientDTO obj){
-        Client newClient = service.update(id, obj);
-        return ResponseEntity.ok().body(newClient);
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteClient(@PathVariable String id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Void> updateClient(@PathVariable String id, @RequestBody ClientDTO obj){
+        Client newClient = service.update(id, obj);
+        return ResponseEntity.noContent().build();
+    }
+
 
 }

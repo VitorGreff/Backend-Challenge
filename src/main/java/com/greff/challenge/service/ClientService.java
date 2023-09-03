@@ -42,6 +42,11 @@ public class ClientService {
         return repo.save(newClient);
     }
 
+    public void delete(String id){
+        findById(id);
+        repo.deleteById(id);
+    }
+
     public Client fromDTO(ClientDTO obj){
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
