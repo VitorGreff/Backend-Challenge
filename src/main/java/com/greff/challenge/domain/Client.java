@@ -48,10 +48,6 @@ public class Client implements Serializable, Comparable<Client>{
         this.birthDate = birthDate;
     }
 
-    public void setDiseases(List<Disease> diseases) {
-        this.diseases = diseases;
-    }
-
     public String getId() {
         return id;
     }
